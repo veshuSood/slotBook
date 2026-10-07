@@ -55,7 +55,7 @@ console.log("JWT stored:", data.token);
   type="button"
   onClick={() => {
     window.location.href =
-      "http://localhost:8080/oauth2/authorization/google";
+  "https://slotbook-backend-udag.onrender.com/oauth2/authorization/google";
   }}
 >
   Continue with Google
