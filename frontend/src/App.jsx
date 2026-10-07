@@ -28,9 +28,7 @@ function App() {
   setError(null);
 
   try {
-    const response = await apiFetch(
-      "http://localhost:8080/api/slots"
-    );
+    const response = await apiFetch("/api/slots");
 
     if (!response.ok) {
       throw new Error("Failed to load slots");
@@ -62,7 +60,7 @@ async function bookSlot(slotId) {
     const idempotencyKey = crypto.randomUUID();
 
     const response = await apiFetch(
-      `http://localhost:8080/api/slots/${slotId}/book`,
+      `/api/slots/${slotId}/book`,
       {
         method: "POST",
         headers: {
@@ -110,7 +108,7 @@ function handleLogout() {
 }
 async function confirmBooking(slotId) {
   const response = await apiFetch(
-    `http://localhost:8080/api/slots/${slotId}/confirm`,
+    `api/slots/${slotId}/confirm`,
     {
       method: "POST",
     }
@@ -152,7 +150,7 @@ async function deleteSlot(slotId) {
 
   try {
     const response = await apiFetch(
-      `http://localhost:8080/api/slots/${slotId}`,
+      `/api/slots/${slotId}`,
       {
         method: "DELETE",
       }
