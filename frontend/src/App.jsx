@@ -108,7 +108,7 @@ function handleLogout() {
 }
 async function confirmBooking(slotId) {
   const response = await apiFetch(
-    `api/slots/${slotId}/confirm`,
+    `/api/slots/${slotId}/confirm`,
     {
       method: "POST",
     }
