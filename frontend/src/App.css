@@ -1,0 +1,222 @@
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+body {
+  margin: 0;
+  background: #f5f6f8;
+  color: #222;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Navbar */
+
+nav {
+  height: 60px;
+  padding: 0 32px;
+  background: white;
+  border-bottom: 1px solid #ddd;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+}
+
+nav h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+nav button {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 8px 14px;
+  border-radius: 5px;
+  margin-left: 8px;
+}
+
+nav button:hover {
+  background: #f2f2f2;
+}
+
+/* Main content */
+
+#root > div {
+  min-height: 100vh;
+}
+
+.slots-section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.slots-section h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Slot grid */
+
+.slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+/* Slot card */
+
+.slot-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.slot-card h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.slot-card p {
+  margin: 8px 0;
+  color: #555;
+}
+
+/* Buttons */
+
+.slot-card button {
+  margin-top: 12px;
+  margin-right: 8px;
+
+  padding: 8px 14px;
+
+  background: #2563eb;
+  color: white;
+
+  border: none;
+  border-radius: 5px;
+}
+
+.slot-card button:hover {
+  background: #1d4ed8;
+}
+
+/* Status */
+
+.status {
+  font-weight: 600;
+}
+
+.status.available {
+  color: #16803c;
+}
+
+.status.booked {
+  color: #c62828;
+}
+
+.status.booking-held {
+  color: #a16207;
+}
+
+.status.booking-confirmed {
+  color: #16803c;
+}
+
+/* Forms */
+
+form {
+  max-width: 420px;
+  margin: 40px auto;
+  background: white;
+  padding: 24px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+form h1,
+form h2 {
+  margin-top: 0;
+}
+
+form div {
+  margin-bottom: 16px;
+}
+
+form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+form input {
+  width: 100%;
+  padding: 9px 10px;
+  box-sizing: border-box;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
+form button {
+  padding: 9px 14px;
+  margin-right: 8px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: #2563eb;
+  color: white;
+}
+
+form button:hover {
+  background: #1d4ed8;
+}
+
+/* Responsive */
+
+@media (max-width: 800px) {
+  .slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 550px) {
+  nav {
+    padding: 0 16px;
+  }
+
+  .slots-section {
+    padding: 0 16px;
+  }
+
+  .slots-grid {
+    grid-template-columns: 1fr;
+  }
+}
