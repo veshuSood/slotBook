@@ -53,6 +53,7 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         .requestMatchers("/api/auth/register").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/oauth2/**", "/login/**").permitAll()
@@ -79,7 +80,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173", "https://slotbook-mu.vercel.app")
+                List.of("http://localhost:5173", "https://slotbook-mu.vercel.app", "https://*.vercel.app")
         );
 
         configuration.setAllowedMethods(
