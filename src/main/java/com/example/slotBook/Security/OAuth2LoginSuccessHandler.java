@@ -13,7 +13,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 
@@ -22,8 +21,6 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
 
     private final UserRepository userRepository;
     private final JwtService jwtService;
-    @Value("${app.frontend-url}")
-    private String frontendUrl;
 
     public OAuth2LoginSuccessHandler(
             UserRepository userRepository,
@@ -84,7 +81,7 @@ public class OAuth2LoginSuccessHandler implements AuthenticationSuccessHandler {
         System.out.println("Redirecting to frontend...");
 
         response.sendRedirect(
-                frontendUrl + "/oauth-success?token=" + token
+                "http://localhost:5173/oauth-success?token=" + token
         );
     }
 }
