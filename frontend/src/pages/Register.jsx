@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { apiFetch } from "../api/api";
 
-function Register() {
+function Register({ onRegisterSuccess }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +34,7 @@ function Register() {
 }
 
     alert("Registration successful! Please login.");
+    onRegisterSuccess();
 
     setName("");
     setEmail("");
@@ -75,8 +76,18 @@ function Register() {
         <button type="submit">
           Register
         </button>
+        <button
+          type="button"
+          onClick={() => {
+            window.location.href =
+              "https://slotbook-backend-udag.onrender.com/oauth2/authorization/google";
+          }}
+        >
+          Continue with Google
+        </button>
       </form>
     </div>
+
   );
 }
 

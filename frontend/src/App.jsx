@@ -259,7 +259,11 @@ async function deleteSlot(slotId) {
     }}
   />
 )}
-      {page === "register" && <Register />}
+      {page === "register" && (
+  <Register
+    onRegisterSuccess={() => setPage("home")}
+  />
+)}
       {page === "create-slot" && (
   <CreateSlot
     onSlotCreated={async () => {
