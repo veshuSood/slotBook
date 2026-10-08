@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.Clock;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Service
@@ -44,7 +46,11 @@ public class SlotService {
     }
 
     public List<Slot> getAllSlots() {
-        return slotRepository.findAll();
+
+        LocalDate today = LocalDate.now(clock);
+        LocalTime now = LocalTime.now(clock);
+
+        return slotRepository.findFutureSlots(today, now);
     }
 
     @Transactional
@@ -93,7 +99,7 @@ public class SlotService {
         key.setIdempotencyKey(idempotencyKey);
         key.setSlotId(slotId);
         key.setBookingId(savedBooking.getId());
-        key.setCreatedAt(LocalDateTime.now());
+        key.setCreatedAt(LocalDateTime.now(clock));
 
         idempotencyKeyRepository.save(key);
 

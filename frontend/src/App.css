@@ -1,13 +1,24 @@
+/* =========================
+   Global
+   ========================= */
+
 #root {
   width: 100%;
   min-height: 100vh;
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
   background: #f5f6f8;
   color: #161616;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+* {
+  box-sizing: border-box;
 }
 
 button {
@@ -20,11 +31,15 @@ button:disabled {
   opacity: 0.6;
 }
 
-/* Navbar */
+
+/* =========================
+   Navbar
+   ========================= */
 
 nav {
-  height: 60px;
-  padding: 0 32px;
+  width: 100%;
+  min-height: 60px;
+  padding: 10px 32px;
   background: white;
   border-bottom: 1px solid #ddd;
 
@@ -32,7 +47,7 @@ nav {
   align-items: center;
   justify-content: space-between;
 
-  box-sizing: border-box;
+  gap: 16px;
 }
 
 nav h2 {
@@ -42,68 +57,155 @@ nav h2 {
   color: #111827;
 }
 
+nav > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
 nav button {
   background: white;
   border: 1px solid #ccc;
-  padding: 8px 14px;
-  border-radius: 5px;
-  margin-left: 8px;
+  padding: 10px 16px;
+  border-radius: 6px;
+  margin: 0;
 }
 
 nav button:hover {
   background: #f2f2f2;
 }
 
-/* Main content */
+
+/* =========================
+   Home page
+   ========================= */
 
 #root > div {
   min-height: 100vh;
 }
 
-.slots-section {
+/* Main heading and description */
+
+#root > div > h1,
+#root > div > p {
   max-width: 1100px;
-  margin: 40px auto;
-  padding: 0 24px;
-  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.slots-section h2 {
-  margin-bottom: 20px;
+#root > div > h1 {
+  margin-top: 40px;
+  margin-bottom: 12px;
+  padding: 0 24px;
+
+  font-size: 42px;
+  line-height: 1.2;
+  font-weight: 700;
+  color: #111827;
+}
+
+#root > div > p {
+  margin-top: 0;
+  margin-bottom: 32px;
+  padding: 0 24px;
+
+  font-size: 18px;
+  color: #374151;
+}
+
+
+/* =========================
+   Slots section
+   ========================= */
+
+.slots-section {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+.slots-section > h2 {
+  margin: 0 0 28px;
+
+  font-size: 28px;
+  font-weight: 600;
+  color: #111827;
+}
+
+
+/* =========================
+   Date groups
+   ========================= */
+
+.slot-days {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.slot-day {
+  width: 100%;
+}
+
+.slot-day h2 {
+  margin: 0 0 18px;
+
   font-size: 24px;
   font-weight: 600;
+  color: #111827;
 }
 
-/* Slot grid */
 
-.slots-grid {
+/* =========================
+   Slot grid
+   ========================= */
+
+.slot-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 18px;
 }
 
-/* Slot card */
+
+/* =========================
+   Slot card
+   ========================= */
 
 .slot-card {
+  min-width: 0;
+
   background: white;
   border: 1px solid #ddd;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 20px;
-  box-sizing: border-box;
+
   color: #1f2937;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .slot-card h3 {
   margin: 0 0 12px;
+
   font-size: 18px;
   font-weight: 600;
+  color: #111827;
 }
 
 .slot-card p {
   margin: 8px 0;
+  padding: 0;
+
   color: #555;
+  font-size: 16px;
 }
 
-/* Buttons */
+
+/* =========================
+   Slot buttons
+   ========================= */
 
 .slot-card button {
   margin-top: 12px;
@@ -122,7 +224,10 @@ nav button:hover {
   background: #1d4ed8;
 }
 
-/* Status */
+
+/* =========================
+   Status
+   ========================= */
 
 .status {
   font-weight: 600;
@@ -144,13 +249,20 @@ nav button:hover {
   color: #16803c;
 }
 
-/* Forms */
+
+/* =========================
+   Forms
+   ========================= */
 
 form {
+  width: calc(100% - 32px);
   max-width: 420px;
+
   margin: 40px auto;
+
   background: white;
   padding: 24px;
+
   border: 1px solid #ddd;
   border-radius: 6px;
 }
@@ -158,6 +270,7 @@ form {
 form h1,
 form h2 {
   margin-top: 0;
+  color: #111827;
 }
 
 form div {
@@ -167,6 +280,7 @@ form div {
 form label {
   display: block;
   margin-bottom: 6px;
+
   font-size: 14px;
   font-weight: 600;
   color: #111827;
@@ -175,10 +289,10 @@ form label {
 form input {
   width: 100%;
   padding: 9px 10px;
-  box-sizing: border-box;
 
   border: 1px solid #ccc;
   border-radius: 4px;
+
   font-size: 14px;
 }
 
@@ -202,29 +316,50 @@ form button:hover {
   background: #1d4ed8;
 }
 
-/* Responsive */
 
-@media (max-width: 800px) {
-  .slots-grid {
-    grid-template-columns: repeat(2, 1fr);
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px) {
+
+  .slot-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
 }
 
-@media (max-width: 550px) {
+@media (max-width: 600px) {
+
   nav {
+    padding: 10px 16px;
+  }
+
+  nav h2 {
+    font-size: 18px;
+  }
+
+  nav button {
+    padding: 8px 12px;
+  }
+
+  #root > div > h1 {
+    margin-top: 28px;
+    font-size: 32px;
     padding: 0 16px;
+  }
+
+  #root > div > p {
+    padding: 0 16px;
+    font-size: 16px;
   }
 
   .slots-section {
-    padding: 0 16px;
+    padding: 0 16px 40px;
   }
 
-  .slots-grid {
+  .slot-grid {
     grid-template-columns: 1fr;
   }
-}
-form h1,
-form h2 {
-  margin-top: 0;
-  color: #111827;
+
 }

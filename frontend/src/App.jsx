@@ -23,6 +23,16 @@ function App() {
   );
   const [bookingSlotId, setBookingSlotId] = useState(null);
 
+  function formatDate(dateString) {
+  const date = new Date(dateString + "T00:00:00");
+
+  return date.toLocaleDateString("en-IN", {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+  });
+}
+
   async function fetchSlots() {
   setLoading(true);
   setError(null);
@@ -207,7 +217,7 @@ async function deleteSlot(slotId) {
 
       {page === "home" && (
         <>
-          <h1>Available Slots</h1>
+          <h1>Book an Appointment</h1>
 <p>Select a time slot to book an appointment.</p>
         {isLoggedIn && role === "ROLE_ADMIN" && (
   <button onClick={() => setPage("create-slot")}>
@@ -224,26 +234,39 @@ async function deleteSlot(slotId) {
 ) : error ? (
   <p>{error}</p>
 ) : (
-  <div className="slots-grid">
-    {slots.map((slot) => (
-      <SlotCard
-  key={slot.id}
-  slot={slot}
-  isAdmin={role === "ROLE_ADMIN"}
-  booking={
-    myBooking?.slot?.id === slot.id
-      ? myBooking
-      : null
-  }
-  onBook={bookSlot}
-  onConfirm={confirmBooking}
-  onDelete={deleteSlot}
-  bookingLoading={bookingLoading}
-  bookingSlotId={bookingSlotId}
-/>
-    ))}
-    <p>Current role: {role}</p>
-  </div>
+  <div className="slot-days">
+  {Object.entries(
+    slots.reduce((groups, slot) => {
+      if (!groups[slot.date]) {
+        groups[slot.date] = [];
+      }
+
+      groups[slot.date].push(slot);
+
+      return groups;
+    }, {})
+  ).map(([date, dateSlots]) => (
+    <section key={date} className="slot-day">
+      <h2>{formatDate(date)}</h2>
+
+      <div className="slot-grid">
+        {dateSlots.map((slot) => (
+          <SlotCard
+            key={slot.id}
+            slot={slot}
+            booking={myBooking}
+            onBook={bookSlot}
+            onConfirm={confirmBooking}
+            onDelete={deleteSlot}
+            isAdmin={role === "ROLE_ADMIN"}
+            bookingLoading={bookingLoading}
+            bookingSlotId={bookingSlotId}
+          />
+        ))}
+      </div>
+    </section>
+  ))}
+</div>
 )}
 </div>
 </>
