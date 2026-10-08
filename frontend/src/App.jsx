@@ -28,9 +28,7 @@ function App() {
   setError(null);
 
   try {
-    const response = await apiFetch(
-      "http://localhost:8080/api/slots"
-    );
+    const response = await apiFetch("/api/slots");
 
     if (!response.ok) {
       throw new Error("Failed to load slots");
@@ -49,7 +47,7 @@ function App() {
   useEffect(() => {
   fetchSlots();
 }, []);
- 
+
 async function bookSlot(slotId) {
   if (!localStorage.getItem("token")) {
   setPage("login");
@@ -62,7 +60,7 @@ async function bookSlot(slotId) {
     const idempotencyKey = crypto.randomUUID();
 
     const response = await apiFetch(
-      `http://localhost:8080/api/slots/${slotId}/book`,
+      `/api/slots/${slotId}/book`,
       {
         method: "POST",
         headers: {
@@ -110,7 +108,7 @@ function handleLogout() {
 }
 async function confirmBooking(slotId) {
   const response = await apiFetch(
-    `http://localhost:8080/api/slots/${slotId}/confirm`,
+    `/api/slots/${slotId}/confirm`,
     {
       method: "POST",
     }
@@ -152,7 +150,7 @@ async function deleteSlot(slotId) {
 
   try {
     const response = await apiFetch(
-      `http://localhost:8080/api/slots/${slotId}`,
+      `/api/slots/${slotId}`,
       {
         method: "DELETE",
       }
@@ -185,14 +183,14 @@ async function deleteSlot(slotId) {
   }
 }
   return (
-    
+
     <div>
       <Navbar
   isLoggedIn={isLoggedIn}
   onLogin={() => setPage("login")}
   onRegister={()=> setPage("register")}
   onLogout={handleLogout}
-  
+
 />
 {window.location.pathname === "/oauth-success" && (
   <OAuthSuccess
@@ -216,8 +214,8 @@ async function deleteSlot(slotId) {
     Create Slot
   </button>
 )}
-          
-      
+
+
           <div className="slots-section">
   <h2>Available Slots</h2>
 

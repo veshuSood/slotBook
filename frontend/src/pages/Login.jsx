@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { apiFetch } from "../api/api";
 function Login({ onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -8,7 +8,7 @@ function Login({ onLoginSuccess }) {
     event.preventDefault();
     console.log("LOGIN BUTTON WORKED");
 
-    const response = await fetch("http://localhost:8080/api/auth/login", {
+    const response = await apiFetch("/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ console.log("JWT stored:", data.token);
   return (
     <div>
       <h1>Login</h1>
-  
+
       <form onSubmit={handleSubmit}>
         <div>
           <label>Email</label>
@@ -55,7 +55,7 @@ console.log("JWT stored:", data.token);
   type="button"
   onClick={() => {
     window.location.href =
-      "http://localhost:8080/oauth2/authorization/google";
+  "https://slotbook-backend-udag.onrender.com/oauth2/authorization/google";
   }}
 >
   Continue with Google

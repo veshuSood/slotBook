@@ -56,6 +56,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/register").permitAll()
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/oauth2/**", "/login/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/slots").permitAll()
                         .requestMatchers(HttpMethod.POST, "/api/slots").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/slots/**").hasRole("ADMIN")
                         .anyRequest().authenticated()
@@ -78,7 +79,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         configuration.setAllowedOrigins(
-                List.of("http://localhost:5173")
+                List.of("http://localhost:5173", "https://slotbook-mu.vercel.app")
         );
 
         configuration.setAllowedMethods(
