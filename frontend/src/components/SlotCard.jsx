@@ -22,6 +22,8 @@ function SlotCard({
     });
   }
 
+  const isMyBooking = booking?.slot?.id === slot.id;
+
   return (
     <div className="slot-card">
 
@@ -36,16 +38,17 @@ function SlotCard({
         </strong>
       </p>
 
-     {booking?.slot?.id === slot.id && (
-  <p>
-    Booking Status:{" "}
-    <strong
-      className={`status booking-${booking.status.toLowerCase()}`}
-    >
-      {booking.status}
-    </strong>
-  </p>
-)}
+      {isMyBooking && (
+        <p>
+          Booking Status:{" "}
+          <strong
+            className={`status booking-${booking.status.toLowerCase()}`}
+          >
+            {booking.status}
+          </strong>
+        </p>
+      )}
+
       {slot.status === "AVAILABLE" && (
         <button
           onClick={() => onBook(slot.id)}
@@ -57,7 +60,7 @@ function SlotCard({
         </button>
       )}
 
-      {booking?.status === "HELD" && (
+      {isMyBooking && booking.status === "HELD" && (
         <button onClick={() => onConfirm(slot.id)}>
           Confirm Booking
         </button>
@@ -69,7 +72,7 @@ function SlotCard({
         </button>
       )}
 
-      {booking?.status === "CONFIRMED" && (
+      {isMyBooking && booking.status === "CONFIRMED" && (
         <p>Confirmed ✅</p>
       )}
 
