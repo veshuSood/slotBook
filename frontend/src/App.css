@@ -6,7 +6,7 @@
 body {
   margin: 0;
   background: #f5f6f8;
-  color: #222;
+  color: #161616;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -39,6 +39,7 @@ nav h2 {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
+  color: #111827;
 }
 
 nav button {
@@ -88,6 +89,7 @@ nav button:hover {
   border-radius: 6px;
   padding: 20px;
   box-sizing: border-box;
+  color: #1f2937;
 }
 
 .slot-card h3 {
@@ -167,6 +169,7 @@ form label {
   margin-bottom: 6px;
   font-size: 14px;
   font-weight: 600;
+  color: #111827;
 }
 
 form input {
@@ -219,4 +222,9 @@ form button:hover {
   .slots-grid {
     grid-template-columns: 1fr;
   }
+}
+form h1,
+form h2 {
+  margin-top: 0;
+  color: #111827;
 }
