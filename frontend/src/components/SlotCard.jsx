@@ -36,17 +36,16 @@ function SlotCard({
         </strong>
       </p>
 
-      {booking && (
-        <p>
-          Booking Status:{" "}
-          <strong
-            className={`status booking-${booking.status.toLowerCase()}`}
-          >
-            {booking.status}
-          </strong>
-        </p>
-      )}
-
+     {booking?.slot?.id === slot.id && (
+  <p>
+    Booking Status:{" "}
+    <strong
+      className={`status booking-${booking.status.toLowerCase()}`}
+    >
+      {booking.status}
+    </strong>
+  </p>
+)}
       {slot.status === "AVAILABLE" && (
         <button
           onClick={() => onBook(slot.id)}
